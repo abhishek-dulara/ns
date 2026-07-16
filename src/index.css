@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Custom Signature Font Helper */
+.font-signature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
+/* Custom scrollbar to match premium theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #505050;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A0A0A0;
+}
