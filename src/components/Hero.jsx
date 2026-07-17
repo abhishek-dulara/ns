@@ -1,12 +1,18 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Feather, Calendar, Briefcase } from 'lucide-react';
 
 const Hero = () => {
   
-  // Updated list of logos
-  const logos = [
-    'Asset 1.png', 'sdti.png', 'uniplan.png', 'royal.png', 'KOS KOLE LOGO.png'
+  // Data for professional experience with their specific periods
+  const experiences = [
+    { logo: 'Asset 1.png', period: 'Aug 2022 - Present' }, // Lyceum Education
+    { logo: 'royal.png', period: 'Sep 2024 - Present' },    // Royal Serandib
+    { logo: 'uniplan.png', period: 'Aug 2025 - Mar 2026' }, // Uniplan Education
+    { logo: 'sdti.png', period: 'June 2026 - Sep 2026' },   // SDTI Campus
+    { logo: 'abans.png', period: '2025 - 2026' },           // Abans
+    { logo: 'uber.png', period: '2025 - 2026' },            // Uber
+    { logo: 'lion.png', period: '2025 - 2026' },            // Lion Brewery
+    { logo: 'eval.png', period: '2025 - 2026' },            // Evaluation Auto
   ];
 
   return (
@@ -18,7 +24,6 @@ const Hero = () => {
         style={{ backgroundImage: "url('/assets/bg.webp')" }}
       ></div>
       
-      {/* Dark overlay for text readability */}
       <div className="absolute inset-0 z-0 bg-gradient-to-r from-black via-black/80 to-transparent/20"></div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col justify-between flex-grow">
@@ -40,7 +45,6 @@ const Hero = () => {
             I help businesses uncover consumer insights, strengthen their brands, and develop research driven digital strategies that combine community intelligence, consumer behavior research, and data-driven marketing to achieve measurable results.
           </p>
           
-          {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4 mb-12">
             <a href="#contact" className="flex items-center gap-2 px-6 py-3 bg-[#D4AF37] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#b8962d] transition-all">
               <Calendar size={16} />
@@ -52,7 +56,6 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Signature and Title block */}
           <div className="mt-8 border-l-2 border-[#D4AF37] pl-4">
             <img 
               src="/assets/signature.png" 
@@ -71,34 +74,34 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Trusted By Section */}
-        <div className="mt-16 w-full flex flex-col items-center">
+        {/* Professional Experience Section */}
+        <div className="mt-16 w-full">
           
-          {/* Section Divider */}
+          {/* Section Header */}
           <div className="w-full flex items-center gap-6 mb-8">
             <div className="flex-grow h-[1px] bg-[#A0A0A0]"></div>
             <span className="text-[#A0A0A0] text-[10px] uppercase tracking-[0.3em] font-semibold whitespace-nowrap">
-              Professional Experience Across Leading Organizations
+              Professional Experience
             </span>
             <div className="flex-grow h-[1px] bg-[#A0A0A0]"></div>
           </div>
           
-          {/* Infinite Marquee Loop for Logos */}
-          <div className="w-full overflow-hidden opacity-60">
-            <motion.div 
-              className="flex gap-16 items-center"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-            >
-              {[...logos, ...logos].map((logo, index) => (
+          {/* Logo Grid Layout */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start">
+            {experiences.map((exp, index) => (
+              <div key={index} className="flex flex-col items-center text-center">
+                {/* Logo Image */}
                 <img
-                  key={index}
-                  src={`/assets/${logo}`}
+                  src={`/assets/${exp.logo}`}
                   alt="Brand Logo"
-                  className="h-10 w-auto object-contain filter brightness-0 invert" 
+                  className="h-10 w-auto object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300" 
                 />
-              ))}
-            </motion.div>
+                {/* Time Period Text */}
+                <span className="text-[9px] uppercase tracking-wider text-[#A0A0A0] mt-3 font-medium">
+                  {exp.period}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
