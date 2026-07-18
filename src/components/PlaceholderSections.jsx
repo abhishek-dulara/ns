@@ -1,14 +1,20 @@
 import React from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
-// Wrapper for boilerplate portfolio architectural tracking
+/**
+ * SectionWrapper Component
+ * A layout wrapper to ensure consistent padding, spacing, and styling 
+ * for all website sections.
+ */
 const SectionWrapper = ({ id, title, children }) => (
   <section id={id} className="py-24 bg-[#000000] px-6 lg:px-12 xl:px-24 border-t border-[#505050]">
     <div className="max-w-5xl mx-auto w-full space-y-12">
-      {/* Label div ඉවත් කරන ලදී */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
+        {/* Title column */}
         <div className="lg:col-span-4">
           <h3 className="text-white text-2xl font-bold uppercase tracking-wider">{title}</h3>
         </div>
+        {/* Content column */}
         <div className="lg:col-span-8 w-full text-[#A0A0A0]">
           {children}
         </div>
@@ -35,12 +41,14 @@ export const Service = () => (
 export const Experience = () => (
   <SectionWrapper id="experience" title="Experience">
     <div className="space-y-8">
+      {/* Experience Item 1 */}
       <div className="relative pl-6 border-l border-[#505050]">
         <span className="text-xs font-semibold uppercase tracking-widest text-[#FFFFFF]">Present</span>
         <h4 className="text-white font-bold text-lg mt-1">Digital Community & Brand Strategist</h4>
         <p className="text-xs text-[#A0A0A0] uppercase tracking-wider mb-2">Consulting Engagements</p>
         <p className="text-sm">Directing cross-functional research execution strategies linking brand sentiment metrics to corporate business targets.</p>
       </div>
+      {/* Experience Item 2 */}
       <div className="relative pl-6 border-l border-[#505050]">
         <span className="text-xs font-semibold uppercase tracking-widest text-[#A0A0A0]">Prior Frameworks</span>
         <h4 className="text-white font-bold text-lg mt-1">Digital Strategy & Consumer Research Partner</h4>
@@ -86,29 +94,70 @@ export const Research = () => (
   </SectionWrapper>
 );
 
-export const Contact = () => (
-  <SectionWrapper id="contact" title="Contact">
-    <div className="max-w-xl space-y-6">
-      <p className="text-base text-[#A0A0A0]">
-        Let's collaborate to align your audience intelligence processes with your digital growth strategies.
-      </p>
-      <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-        <div>
-          <label className="block text-xs uppercase tracking-widest text-[#A0A0A0] mb-2 font-semibold">Name</label>
-          <input type="text" className="w-full bg-[#000000] border border-[#505050] p-3 text-white focus:outline-none focus:border-[#FFFFFF] transition-colors" />
+/**
+ * Contact Component
+ * Handles the user inquiry form using Formspree. 
+ * Includes conditional rendering to show a success message without page redirection.
+ */
+export const Contact = () => {
+  const [state, handleSubmit] = useForm("xqerqkpj");
+
+  // If the form submission is successful, display a nice confirmation UI
+  if (state.succeeded) {
+    return (
+      <SectionWrapper id="contact" title="Contact">
+        <div className="text-center py-12">
+          <h4 className="text-white text-2xl font-bold mb-4">Message Sent Successfully!</h4>
+          <p className="text-[#A0A0A0]">Thank you for reaching out. I will get back to you as soon as possible.</p>
         </div>
-        <div>
-          <label className="block text-xs uppercase tracking-widest text-[#A0A0A0] mb-2 font-semibold">Email</label>
-          <input type="email" className="w-full bg-[#000000] border border-[#505050] p-3 text-white focus:outline-none focus:border-[#FFFFFF] transition-colors" />
-        </div>
-        <div>
-          <label className="block text-xs uppercase tracking-widest text-[#A0A0A0] mb-2 font-semibold">Message</label>
-          <textarea rows="4" className="w-full bg-[#000000] border border-[#505050] p-3 text-white focus:outline-none focus:border-[#FFFFFF] transition-colors"></textarea>
-        </div>
-        <button type="submit" className="w-full bg-[#FFFFFF] text-[#000000] uppercase font-bold text-xs tracking-widest py-4 hover:bg-[#505050] hover:text-[#FFFFFF] transition-all duration-300">
-          Send Message
-        </button>
-      </form>
-    </div>
-  </SectionWrapper>
-);
+      </SectionWrapper>
+    );
+  }
+
+  return (
+    <SectionWrapper id="contact" title="Contact">
+      <div className="max-w-xl space-y-6">
+        <p className="text-base text-[#A0A0A0]">
+          Let's collaborate to align your audience intelligence processes with your digital growth strategies.
+          <br /><br />
+          You can email me at <a href="mailto:info@nadeesenanayake.com" className="text-white underline">info@nadeesenanayake.com</a>
+        </p>
+
+        {/* WhatsApp contact button */}
+        <a 
+          href="https://wa.me/94717088630" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-block bg-[#25D366] text-black uppercase font-bold text-xs tracking-widest py-3 px-6 hover:bg-[#128C7E] hover:text-white transition-all duration-300"
+        >
+          Chat on WhatsApp
+        </a>
+
+        {/* Contact form using Formspree */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-xs uppercase tracking-widest text-[#A0A0A0] mb-2 font-semibold">Name</label>
+            <input type="text" name="name" required className="w-full bg-[#000000] border border-[#505050] p-3 text-white focus:outline-none focus:border-[#FFFFFF] transition-colors" />
+          </div>
+          <div>
+            <label className="block text-xs uppercase tracking-widest text-[#A0A0A0] mb-2 font-semibold">Email</label>
+            <input type="email" name="email" required className="w-full bg-[#000000] border border-[#505050] p-3 text-white focus:outline-none focus:border-[#FFFFFF] transition-colors" />
+            <ValidationError prefix="Email" field="email" errors={state.errors} />
+          </div>
+          <div>
+            <label className="block text-xs uppercase tracking-widest text-[#A0A0A0] mb-2 font-semibold">Message</label>
+            <textarea rows="4" name="message" required className="w-full bg-[#000000] border border-[#505050] p-3 text-white focus:outline-none focus:border-[#FFFFFF] transition-colors"></textarea>
+            <ValidationError prefix="Message" field="message" errors={state.errors} />
+          </div>
+          <button 
+            type="submit" 
+            disabled={state.submitting}
+            className="w-full bg-[#FFFFFF] text-[#000000] uppercase font-bold text-xs tracking-widest py-4 hover:bg-[#505050] hover:text-[#FFFFFF] transition-all duration-300"
+          >
+            {state.submitting ? "Sending..." : "Send Message"}
+          </button>
+        </form>
+      </div>
+    </SectionWrapper>
+  );
+};

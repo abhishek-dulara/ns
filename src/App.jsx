@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+// Importing components from the placeholder file
 import { Service, Experience, Projects, Research, Contact } from './components/PlaceholderSections';
 
 function App() {
