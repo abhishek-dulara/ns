@@ -15,23 +15,23 @@ const About = () => {
   };
 
   const expertiseItems = [
-    "Brand Strategy",
-    "Digital Community Intelligence",
+    "Performance Marketing",
+    "Data Driven Marketing Strategy",
+    "Data Driven Business Development Strategy",
+    "Business Analysis",
+    "Communication Strategy For Sales",
     "Consumer Behavior Research",
-    "Market Research",
-    "Community Management",
+    "Digital Community Intelligence",
     "Online Reputation Management",
-    "Social Listening & Sentiment Analysis",
-    "Digital Marketing Strategy",
-    "Customer Experience Insights",
-    "Strategic Communication"
+    "Social Listening",
+    "Marketing Automation",
+    "Workflow Automation For Marketing Operations",
+    "SaaS Development"
   ];
 
   return (
     <section id="about" className="py-24 bg-[#000000] px-6 lg:px-12 xl:px-24 border-t border-[#505050]">
       <div className="max-w-5xl mx-auto w-full space-y-20">
-
-
 
         {/* Who I Am Subsection */}
         <motion.div
@@ -46,12 +46,10 @@ const About = () => {
           </div>
 
           <div className="lg:col-span-8 text-[#A0A0A0] space-y-6 leading-relaxed text-base">
-            {/* Always visible introductory paragraph */}
             <p>
               I'm Nadee Senanayake, a Brand Strategist and Digital Community Intelligence Specialist passionate about understanding how people think, interact, and make decisions in digital environments.
             </p>
 
-            {/* Collapsible content section */}
             <AnimatePresence>
               {isExpanded && (
                 <motion.div
@@ -73,7 +71,6 @@ const About = () => {
               )}
             </AnimatePresence>
 
-            {/* Toggle Button */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="text-[#FFFFFF] text-xs uppercase tracking-widest font-bold border-b border-[#505050] hover:text-[#A0A0A0] transition-colors mt-2"

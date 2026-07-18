@@ -3,16 +3,16 @@ import { Feather, Calendar, Briefcase } from 'lucide-react';
 
 const Hero = () => {
   
-  // Data for professional experience with their specific periods
+  // Updated professional experience data structure
   const experiences = [
-    { logo: 'Asset 1.png', period: 'Aug 2022 - Present' }, // Lyceum Education
-    { logo: 'royal.png', period: 'Sep 2024 - Present' },    // Royal Serandib
-    { logo: 'uniplan.png', period: 'Aug 2025 - Mar 2026' }, // Uniplan Education
-    { logo: 'sdti.png', period: 'June 2026 - Sep 2026' },   // SDTI Campus
-    { logo: 'abans.png', period: '2025 - 2026' },           // Abans
-    { logo: 'uber.png', period: '2025 - 2026' },            // Uber
-    { logo: 'lion.png', period: '2025 - 2026' },            // Lion Brewery
-    { logo: 'eval.png', period: '2025 - 2026' },            // Evaluation Auto
+    { logo: 'Asset 1.png', periods: ['Aug 2022 - June 2024', 'June 2026 - Present'] }, // Lyceum Education
+    { logo: 'royal.png', periods: ['Sep 2024 - Present'] },    // Royal Serandib
+    { logo: 'uniplan.png', periods: ['Aug 2025 - Mar 2026'] }, // Uniplan Education
+    { logo: 'sdti.png', periods: ['June 2026 - Sep 2026'] },   // SDTI Campus
+    { logo: 'abans.png', periods: ['2025 - 2026'] },           // Abans
+    { logo: 'uber.png', periods: ['2025 - 2026'] },            // Uber
+    { logo: 'lion.png', periods: ['2025 - 2026'] },            // Lion Brewery
+    { logo: 'eval.png', periods: ['2025 - 2026'] },            // Evaluation Auto
   ];
 
   return (
@@ -77,7 +77,6 @@ const Hero = () => {
         {/* Professional Experience Section */}
         <div className="mt-16 w-full">
           
-          {/* Section Header */}
           <div className="w-full flex items-center gap-6 mb-8">
             <div className="flex-grow h-[1px] bg-[#A0A0A0]"></div>
             <span className="text-[#A0A0A0] text-[10px] uppercase tracking-[0.3em] font-semibold whitespace-nowrap">
@@ -90,16 +89,19 @@ const Hero = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-start">
             {experiences.map((exp, index) => (
               <div key={index} className="flex flex-col items-center text-center">
-                {/* Logo Image */}
                 <img
                   src={`/assets/${exp.logo}`}
                   alt="Brand Logo"
                   className="h-10 w-auto object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300" 
                 />
-                {/* Time Period Text */}
-                <span className="text-[9px] uppercase tracking-wider text-[#A0A0A0] mt-3 font-medium">
-                  {exp.period}
-                </span>
+                {/* Render multiple periods as separate lines */}
+                <div className="mt-3 flex flex-col gap-1">
+                  {exp.periods.map((p, idx) => (
+                    <span key={idx} className="text-[9px] uppercase tracking-wider text-[#A0A0A0] font-medium leading-tight">
+                      {p}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
