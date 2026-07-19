@@ -3,7 +3,7 @@ import { Feather, Calendar, Briefcase } from 'lucide-react';
 
 const Hero = () => {
   
-  // Updated professional experience data structure
+  // Professional experience data
   const experiences = [
     { logo: 'Asset 1.png', periods: ['Aug 2022 - June 2024', 'June 2026 - Present'] }, // Lyceum Education
     { logo: 'royal.png', periods: ['Sep 2024 - Present'] },    // Royal Serandib
@@ -92,7 +92,12 @@ const Hero = () => {
                 <img
                   src={`/assets/${exp.logo}`}
                   alt="Brand Logo"
-                  className="h-10 w-auto object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity duration-300" 
+                  // Asset 1.png සඳහා පමණක් පෙර තිබූ filter එක යොදා ඇත
+                  className={`h-10 w-auto object-contain transition-opacity duration-300 ${
+                    exp.logo === 'Asset 1.png' 
+                      ? 'filter brightness-0 invert opacity-70 hover:opacity-100' 
+                      : 'opacity-70 hover:opacity-100'
+                  }`}
                 />
                 {/* Render multiple periods as separate lines */}
                 <div className="mt-3 flex flex-col gap-1">
